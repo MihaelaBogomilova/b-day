@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>My-b-day</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: var(--text-color);
+        }
+        :root{
+            --text-color: color: rgb(59, 2, 34);
+        }
+        body{
+
+           /* background: rgb(121,9,39);
+            background: linear-gradient(90deg, rgba(121,9,39,1) 0%, rgba(255,118,155,1) 41%, rgba(255,223,241,1) 100%); */
+            background-image: url(./pngtree-modern-double-color-futuristic-neon-background-picture-image_1181573.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        html {
+            height: 100%
+        }
+        .generalContainer{
+            width: 30%;
+            height: 150px;
+           /* background: rgb(255,223,241);
+            background: linear-gradient(90deg, rgba(255,223,241,1) 0%, rgba(255,118,155,1) 41%, rgba(121,9,39,1) 100%);*/
+            background: rgb(206, 173, 227);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px auto;
+        }
+        #text{
+            font-size: 16px;
+            margin-left: 5%;
+        }
+        #inputText{
+            width: 25%;
+            height: 20%;
+            margin-right: 5%;
+        }
+        #n-1{
+            margin-left: 5%;
+        }
+        #n-1, #n-2{
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+        .char{
+            font-size: 22px;
+           
+        }
+        #inputNum{
+            width: 20%;
+            height: 20%;
+            margin-right: 5%;
+        }
+        #btn{
+            width: 25%;
+            height: 25%;
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin: 0 auto;
+        }
+        #inputText, #inputNum, #btn{
+            background-color: rgb(225, 212, 239);
+            border: 2px solid rgb(214, 143, 244);
+        }
+        #addText, #time{
+            width: 30%;
+            height: 50px;
+            font-size: 16px;
+            background: rgb(206, 173, 227);
+            margin: 10px auto;
+            text-align: center;
+        }
+        #time{
+            font-size: 45px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .generalContainer{
+            width: 70%;
+            }
+            #text{
+            font-size: 14px;
+            margin-left: 5%;
+            }
+            #inputText{
+            width: 50%;
+            height: 20%;
+            margin-right: 5%;
+            }
+            #n-1, #n-2{
+            font-size: 16px;
+            letter-spacing: 1px;
+            }
+            #btn{
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+            #addText, #time{
+            width: 70%;
+            height: 70px;
+            font-size: 14px;
+            }
+            #time{
+            font-size: 40px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="generalContainer">
+        <p id="text">Град на 18км северозападно от Перник:</p>
+        <input id="inputText" type="text">
+    </div>
+
+    <div class="generalContainer">
+      <div id="n-1">
+        <a href="https://www.youtube.com/watch?v=Yb2fg2yPVtE" target="_blank">Num-1</a>
+      </div>
+      <p class="char">-</p>
+      <div id="n-2">
+        <a href="https://www.youtube.com/watch?v=uumHkRC-DE8" target="_blank">Num-2</a>
+      </div>
+      <p class="char">=</p>
+      <input id="inputNum" type="number">
+    </div>
+    <div class="generalContainer">
+       <button id="btn">Check</button>
+    </div>
+    <div id="addText"></div>
+    <p id="time"></p>
+
+    <!--<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>-->
+    <script>
+        
+      document.getElementById('btn').addEventListener('click', function(){
+            let text = document.getElementById('inputText').value;
+            console.log(text);
+            let num = parseFloat(document.getElementById('inputNum').value);
+            console.log(num);
+            let addText = document.getElementById('addText');
+
+            if(num === 28 && text == 'Брезник'){
+              addText.innerHTML = 'Очаквам те на 06.05.2023 на улица Брезник № 28.';
+                var countDownDate = new Date("May 6 , 2023 19:30:00").getTime();
+                var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("time").innerHTML = days + "d " + hours + "h "
+                 + minutes + "m " + seconds + "s ";
+
+                if (distance < 0) {
+                    clearInterval(x);
+                     document.getElementById("demo").innerHTML = "EXPIRED";
+                }
+            }, 1000);
+            }
+            else{
+              addText.innerHTML = 'Грешно поле! (моля въвеждайте текста на кирилица. Първата буква на града е главна.)';
+              setTimeout(function(){
+                window.location.reload(1);
+              }, 5000);
+            }
+        });
+
+          /* $('#btn').click(function(){
+            let text = $('#inputText').val();
+            let num = parseFloat($('#inputNum').val());
+            
+            if(num === 28 && text == 'Брезник'){
+                $('body').append('<p id="addText">Очаквам те на 06.05.2023 на улица Брезник № 28.</p>');
+
+            }else{
+                $('body').append('<p id="addText">Грешно поле! (моля въвеждайте текста на кирилица. Първата буква на града е главна.)</p>');
+            }
+            
+        });
+        */
+    
+    </script>
+</body>
+</html>
